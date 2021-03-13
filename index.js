@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-var player = require('play-sound')(opts = {})
+var play = require('play');
 
 async function checkStock () {
   const date = new Date();
@@ -16,10 +16,10 @@ async function checkStock () {
   await page.goto("https://www.walmart.ca/en/ip/playstation5-digital-edition/6000202198823");
   const name = await page.$eval('[data-automation="cta-button"]', el => el.innerText)
 
-  if (name !== 'Out of stock') {
+  if (name !== 'Out off stock') {
     console.log("In stock! Run run! \n\nhttps://www.walmart.ca/en/ip/playstation5-digital-edition/6000202198823");
 
-    player.play('./alarm.mp3', function (err) {
+    play.sound('./alarm.mp3', function (err) {
       if (err) throw err;
     });
   } else {
